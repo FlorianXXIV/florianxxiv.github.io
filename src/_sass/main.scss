@@ -4,4 +4,34 @@
 
 * {
   font-family: Arial, sans-serif;
+  color: #f0f0f0;
 }
+
+.content {
+  margin: 5pt;
+}
+
+body {
+  background-color: #606060;
+  margin: 0;
+}
+
+nav.navbar {
+  background-color: #404040;
+  padding-top: 5pt;
+  padding-bottom: 5pt;
+  margin: 0;
+}
+
+a.navbar {
+  background-color: #3048FF;
+  padding: inherit;
+  color: white;
+  text-decoration: none;
+}
+
+a.navbar:hover{
+  background-color: #f0f0f0;
+  color: black;
+}
+
