@@ -1,6 +1,7 @@
 <nav class="navbar">
+		<a href="https://github.com/FlorianXXIV" class="navbar image"><img href="https://gitghub.com/FlorianXXIV" class="navbar" src="./assets/images/github-mark.svg" alt="GitHub-Logo"></a>
 	{% for item in site.data.navigation %}
-		<a href="{{ item.link }}" class="navbar" {% if page.url == item.link %} class="current_page" {% endif %}>
+		<a href="{{ item.link }}" {% if page.url == item.link %} class="current_page navbar" {% else %} class="navbar"  {% endif %}>
 			{{ item.name }}
 		</a>
 	{% endfor %}

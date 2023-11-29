@@ -1,5 +1,15 @@
-.current_page {
-  color: green;
+.navbar.current_page {
+  color: black;
+  padding-bottom: 5pt;
+}
+
+img.navbar {
+  padding: 0;
+  border: 0;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  height: 20pt;
+  margin: 25% 5pt 0 5pt;
 }
 
 * {
@@ -8,7 +18,15 @@
 }
 
 .content {
-  margin: 5pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5pt;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #303030;
+  box-sizing: content-box;
 }
 
 body {
@@ -17,22 +35,39 @@ body {
 }
 
 nav.navbar {
-  background-color: #404040;
-  padding-top: 5pt;
-  padding-bottom: 5pt;
+  background-color: #202020;
+  padding: 0;
   margin: 0;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
 }
 
 a.navbar {
   background-color: #3048FF;
-  padding: inherit;
   color: white;
   text-decoration: none;
+  padding: 10pt 10pt 10pt;
 }
 
 a.navbar:hover {
   background-color: #f0f0f0;
   color: black;
+}
+
+a {
+  text-decoration: none;
+  color: #5068FF;
+}
+
+a:hover {
+  color: white;
+}
+
+.navbar.image {
+  padding: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
