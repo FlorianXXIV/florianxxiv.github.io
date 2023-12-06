@@ -10,15 +10,25 @@ I think it looks nice, it's moddeld after the "bobthefish" theme of the fish she
 
 ```powershell
 function prompt {
-	$identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = [Security.Principal.WindowsPrincipal] $identity
     $adminRole = [Security.Principal.WindowsBuiltInRole]::Administrator
 	
-	$prefix = $(if (Test-Path variable:/PSDebugContext) { '🐛:' }
-                elseif ($principal.IsInRole($adminRole)) { '🛡:' }
-                else {
-"$($PSStyle.Background.FromRgb(0x2f2f2f))$($PSStyle.Foreground.FromRgb(0x6084f3))" + $env:USERNAME + "$($PSStyle.Foreground.Yellow)" + '@' + "$($PSStyle.Foreground.White)"
-		})
+	$prefix = "$(
+			$PSStyle.Background.FromRgb(0x2f2f2f)
+		)$(
+			Get-Date -Format "d/M H:m"
+		)$(
+			$PSStyle.Foreground.FromRgb(0x6084f3)
+		) "+$env:USERNAME+"$($PSStyle.Foreground.Yellow)" + $(
+		if (Test-Path variable:/PSDebugContext) {
+				'🐛' 
+			} elseif ($principal.IsInRole($adminRole)) {
+				"🛡" 
+			} else {
+				'@'
+			}
+		) + "$($PSStyle.Foreground.White)"
 
 	$drive = $(Get-Location).Drive
     $winPath = $(Get-Location).Path.Split('\')
@@ -40,7 +50,12 @@ function prompt {
 	$body = $path
 	
 				
-	$suffix = " $($PSStyle.Background.Black)$($PSStyle.Foreground.FromRgb(0x2f2f2f)) $($PSStyle.Reset)"
+	$suffix = " $(
+	$PSStyle.Background.Black
+	)$(
+	$PSStyle.Foreground.FromRgb(0x2f2f2f)
+	) $(
+	$PSStyle.Reset)"
 	
     $prefix + $body + $suffix
 }
