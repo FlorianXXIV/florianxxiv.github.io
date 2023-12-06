@@ -17,7 +17,7 @@ function prompt {
 	$prefix = "$(
 			$PSStyle.Background.FromRgb(0x2f2f2f)
 		)$(
-			Get-Date -Format "d/M H:m"
+			Get-Date -Format "d/M HH:Mm"
 		)$(
 			$PSStyle.Foreground.FromRgb(0x6084f3)
 		) "+$env:USERNAME+"$($PSStyle.Foreground.Yellow)" + $(
