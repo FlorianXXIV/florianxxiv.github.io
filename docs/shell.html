@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PowerShell</title>
+		<link rel="stylesheet" href="./assets/css/styles.css">
+	</head>
+	<body>
+		<nav class="navbar">
+		<a href="https://github.com/FlorianXXIV" class="navbar image"><img href="https://gitghub.com/FlorianXXIV" class="navbar" src="./assets/images/github-mark.svg" alt="GitHub-Logo"></a>
+	
+		<a href="/"  class="navbar"  >
+			Home
+		</a>
+	
+		<a href="/about.html"  class="navbar"  >
+			About
+		</a>
+	
+		<a href="/shell.html"  class="current_page navbar" >
+			PowerShell
+		</a>
+	
+</nav>
+
+		<div class="content">
+			<h2 id="custom-powershell-prompt">Custom PowerShell prompt</h2>
+
+<p>This is a prompt for PowerShell, for it to work you’ll need a monospaced nerd font like “JetBrains Mono Nerd Font”
+I think it looks nice, it’s moddeld after the “bobthefish” theme of the fish shell, sadly without the additional functionality.</p>
+
+<pre><code class="language-PowerShell">function prompt {
+	$identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = [Security.Principal.WindowsPrincipal] $identity
+    $adminRole = [Security.Principal.WindowsBuiltInRole]::Administrator
+	
+	$prefix = $(if (Test-Path variable:/PSDebugContext) { '🐛:' }
+                elseif ($principal.IsInRole($adminRole)) { '🛡:' }
+                else { "$($PSStyle.Background.FromRgb(0x2f2f2f))$($PSStyle.Foreground.FromRgb(0x6084f3))" + $env:USERNAME + "$($PSStyle.Foreground.Yellow)" + '@' + "$($PSStyle.Foreground.White)"})
+
+	$drive = $(Get-Location).Drive
+    $winPath = $(Get-Location).Path.Split('\')
+	if ($(Get-Location).Path -like $HOME + '*') {
+		$path = "~"
+		$i = 3
+	} else {
+		$path = '/'+$drive.ToString()
+		$i = 1
+	}
+	for($i; $i -lt $winPath.Length; $i++) {
+		if ($i -eq $winPath.Length-1) {
+			$path += '/' + $winPath[$i]
+		} else {
+			$path += '/' + $winPath[$i][0]
+		}
+	}
+
+	$body = $path
+	
+				
+	$suffix = " $($PSStyle.Background.Black)$($PSStyle.Foreground.FromRgb(0x2f2f2f)) $($PSStyle.Reset)"
+	
+    $prefix + $body + $suffix
+}
+</code></pre>
+
+		</div>
+	</body>
+</html>
